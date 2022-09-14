@@ -3,35 +3,46 @@ package com.example.bunnygene.data;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.BaseColumns;
+
+import com.example.bunnygene.contract.Patient;
 
 public class PatientQuery {
-    public static void createPatient(SQLiteDatabase db) {
-        // Insert into table - Option 1
-        String query = "INSERT INTO Patient ("
-                + TableDefinition.PatientEntry.COLUMN_FIRST_NAME + ","
-                + TableDefinition.PatientEntry.COLUMN_LAST_NAME + ","
-                + TableDefinition.PatientEntry.COLUMN_MIDDLE_NAME + ","
-                + TableDefinition.PatientEntry.COLUMN_SEX + ","
-                + TableDefinition.PatientEntry.COLUMN_AGE + ")"
-                + " VALUES (\"Madalina\", \"Stelea\", \"Ioana\", \"F\", \"30\")";
-        db.execSQL(query);
+    public static final String TABLE_NAME = "Patient";
+    public static final String _ID = BaseColumns._ID;
+    public static final String COLUMN_FIRST_NAME = "FirstName";
+    public static final String COLUMN_LAST_NAME = "LastName";
+    public static final String COLUMN_MIDDLE_NAME = "MiddleName";
+    public static final String COLUMN_SEX = "Sex";
+    public static final String COLUMN_DATE_OF_BIRTH = "Date of Birth";
 
+    public static final String CREATE_PATIENT_TABLE =
+            "CREATE TABLE " + TABLE_NAME + "(" +
+                    _ID + " INTEGER PRIMARY KEY, " +
+                    COLUMN_FIRST_NAME + " TEXT, " +
+                    COLUMN_LAST_NAME + " TEXT, " +
+                    COLUMN_MIDDLE_NAME + " TEXT, " +
+                    COLUMN_SEX + " TEXT, " +
+                    COLUMN_DATE_OF_BIRTH + " TEXT" +
+                    ")";
+
+    public static void insertPatient(SQLiteDatabase db, Patient patient) {
         // Insert into table - Option 2
         ContentValues values = new ContentValues();
-        values.put(TableDefinition.PatientEntry.COLUMN_FIRST_NAME, "John");
-        values.put(TableDefinition.PatientEntry.COLUMN_LAST_NAME, "Davis");
-        values.put(TableDefinition.PatientEntry.COLUMN_MIDDLE_NAME, "Christian");
-        values.put(TableDefinition.PatientEntry.COLUMN_SEX, "M");
-        values.put(TableDefinition.PatientEntry.COLUMN_AGE, "25");
-        db.insert(TableDefinition.PatientEntry.TABLE_NAME, null, values);
+        values.put(COLUMN_FIRST_NAME, patient.getFirstName());
+        values.put(COLUMN_LAST_NAME, patient.getLastName());
+        values.put(COLUMN_MIDDLE_NAME, patient.getMiddleName());
+        values.put(COLUMN_SEX, patient.getSex());
+//        values.put(COLUMN_DATE_OF_BIRTH, patient.getDateOfBirth());
+        db.insert(TABLE_NAME, null, values);
     }
 
     public static String getPatientFirstName(SQLiteDatabase db) {
         Cursor c = db.rawQuery("SELECT * FROM Patient", null);
         int i = c.getCount();
         c.move(i);
-        int firstName = c.getColumnIndex("FirstName");
-        int lastName = c.getColumnIndex("LastName");
-        return c.getString(firstName) + " " + c.getString(lastName);
+        int firstNameIndex = c.getColumnIndex("FirstName");
+        int lastNameIndex = c.getColumnIndex("LastName");
+        return c.getString(firstNameIndex) + " " + c.getString(lastNameIndex);
     }
 }

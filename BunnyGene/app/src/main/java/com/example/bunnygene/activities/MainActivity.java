@@ -1,8 +1,6 @@
-package com.example.bunnygene;
+package com.example.bunnygene.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -13,28 +11,30 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.bunnygene.R;
+import com.example.bunnygene.contract.Patient;
 import com.example.bunnygene.data.DBHelper;
 import com.example.bunnygene.data.PatientQuery;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button buttonGetFirstName;
-    private TextView textView;
-
     private Button buttonNotifyUser;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Create a database
         DBHelper dbHelper = new DBHelper(this);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-        PatientQuery.createPatient(db);
+        Patient patient = new Patient("John", "Davis", "Paul", "M", "07/21/1983");
+        PatientQuery.insertPatient(db, patient);
 
         textView = findViewById(R.id.textView);
-
         buttonGetFirstName = findViewById(R.id.button);
         buttonGetFirstName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,22 +43,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_DEFAULT);
-            NotificationManager manager = getSystemService(NotificationManager.class);
-            manager.createNotificationChannel(channel);
-        }
+
         buttonNotifyUser = findViewById(R.id.buttonNotifyUser);
         buttonNotifyUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "Notify User");
-//                builder.setContentTitle("My First Notification");
-//                builder.setContentText("Hello from my first notification");
-//                builder.setAutoCancel(true);
-//
-//                NotificationManagerCompat managerCompat = NotificationManagerCompat.from(MainActivity.this);
-//                managerCompat.notify(10, builder.build());
+
             }
         });
     }

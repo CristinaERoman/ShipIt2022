@@ -14,7 +14,7 @@ public class PatientQuery {
     public static final String COLUMN_LAST_NAME = "LastName";
     public static final String COLUMN_MIDDLE_NAME = "MiddleName";
     public static final String COLUMN_SEX = "Sex";
-    public static final String COLUMN_DATE_OF_BIRTH = "Date of Birth";
+    public static final String COLUMN_DATE_OF_BIRTH = "DateOfBirth";
 
     public static final String CREATE_PATIENT_TABLE =
             "CREATE TABLE " + TABLE_NAME + "(" +
@@ -33,7 +33,7 @@ public class PatientQuery {
         values.put(COLUMN_LAST_NAME, patient.getLastName());
         values.put(COLUMN_MIDDLE_NAME, patient.getMiddleName());
         values.put(COLUMN_SEX, patient.getSex());
-//        values.put(COLUMN_DATE_OF_BIRTH, patient.getDateOfBirth());
+        values.put(COLUMN_DATE_OF_BIRTH, patient.getDateOfBirth());
         db.insert(TABLE_NAME, null, values);
     }
 

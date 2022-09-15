@@ -99,7 +99,7 @@
             app:layout_constraintTop_toBottomOf="@+id/firstName" />
 
         <EditText
-            android:id="@+id/editTextDate"
+            android:id="@+id/birthDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="Date of birth"
@@ -132,7 +132,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
+            app:layout_constraintTop_toBottomOf="@+id/birthDate" />
 
         <RadioGroup
             android:id="@+id/sexRadioGroup"

@@ -2,6 +2,7 @@ package com.example.bunnygene.web;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -36,9 +37,22 @@ public class Settings extends AppCompatActivity {
         dbHelper = new DBHelper(this);
         db = dbHelper.getReadableDatabase();
         csvReader = new CSVReader(this);
+        TextView firstName = (TextView) findViewById(R.id.firstName);
+        TextView lastName = (TextView) findViewById(R.id.lastName);
+        RadioGroup frequency = (RadioGroup) findViewById(R.id.frequencyRadioGroup);
+        RadioGroup sexRadioGroup = (RadioGroup) findViewById(R.id.sexRadioGroup);
+        SwitchCompat privacy = (SwitchCompat) findViewById(R.id.privacySwitch);
 
-        db.execSQL("DROP TABLE IF EXISTS " + PatientDAO.TABLE_NAME);
-        db.execSQL(PatientDAO.CREATE_PATIENT_TABLE);
+        RadioButton femaleButton = (RadioButton) findViewById(R.id.femaleButton);
+        RadioButton maleButton = (RadioButton) findViewById(R.id.maleButton);
+
+        RadioButton dailyButton = (RadioButton) findViewById(R.id.dailyButton);
+        RadioButton weeklyButton = (RadioButton) findViewById(R.id.weeklyButton);
+        RadioButton monthlyButton = (RadioButton) findViewById(R.id.monthlyButton);
+
+        TextView birthdate = (TextView) findViewById(R.id.birthDate);
+        //db.execSQL("DROP TABLE IF EXISTS " + PatientDAO.TABLE_NAME);
+        //db.execSQL(PatientDAO.CREATE_PATIENT_TABLE);
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -46,19 +60,39 @@ public class Settings extends AppCompatActivity {
             actionBar.setHomeButtonEnabled(true);
         }
 
+        PatientDTO patient = PatientDAO.getPatient((db));
+
+        //SETTING THE FIELDS
+        firstName.setText(patient.getFirstName());
+        lastName.setText(patient.getLastName());
+        if (patient.getSex()== "female") {
+            femaleButton.setChecked(true);
+        } else {
+            maleButton.setChecked(true);
+        }
+
+        String notificationFrequency = patient.getNotificationFrequency();
+
+        if(notificationFrequency == "daily") {
+            dailyButton.setChecked(true);
+        } else if(notificationFrequency == "weekly"){
+            weeklyButton.setChecked(true);
+        } else {
+            monthlyButton.setChecked(true);
+        }
+
+        if(patient.getPrivacy() == true) {
+            privacy.setChecked(true);
+        }
+
+        birthdate.setText(patient.getDateOfBirth());
+
         Button save = (Button) findViewById(R.id.saveButton);
 
         save.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
-                TextView firstName = (TextView) findViewById(R.id.firstName);
-                TextView lastName = (TextView) findViewById(R.id.lastName);
-                //TextView birthdate = (Date)
-                SwitchCompat privacy = (SwitchCompat) findViewById(R.id.privacySwitch);
+
                 String notificationFrequency = new String();
-
-                RadioGroup frequency = (RadioGroup) findViewById(R.id.frequencyRadioGroup);
-                RadioGroup sexRadioGroup = (RadioGroup) findViewById(R.id.sexRadioGroup);
-
                 String sex = new String();
 
                 if(sexRadioGroup.getCheckedRadioButtonId() == R.id.femaleButton)
@@ -76,13 +110,12 @@ public class Settings extends AppCompatActivity {
                     notificationFrequency = "monthly";
                 }
 
-
                 PatientDTO patient = new PatientDTO(
                         firstName.getText().toString()
                         , lastName.getText().toString()
                         , ""
                         , sex
-                        , "23.01.1999"
+                        , birthdate.getText().toString()
                         , privacy.isChecked()
                         ,notificationFrequency);
 

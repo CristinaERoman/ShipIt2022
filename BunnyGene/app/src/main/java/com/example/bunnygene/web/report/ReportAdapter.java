@@ -68,6 +68,8 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.RecViewHol
         TextView txtFequency;
         TextView txtLink;
 
+        View itemView;
+
         public RecViewHolder(View itemView) {
             super(itemView);
             txtName = itemView.findViewById(R.id.rec_name);
@@ -75,6 +77,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.RecViewHol
             img = itemView.findViewById(R.id.rec_img);
             txtFequency  = itemView.findViewById(R.id.rec_freq);
             txtLink = itemView.findViewById(R.id.rec_link);
+            this.itemView = itemView;
         }
 
         public void bind(RecommendationDTO recommendation){
@@ -88,6 +91,13 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.RecViewHol
             text+=recommendation.link;
             text+="'> More details on this Recommendation </a>";
             txtLink.setText(Html.fromHtml(text));
+
+
+
+            int drawableId = itemView.getResources().getIdentifier(recommendation.image, "drawable",
+                    itemView.getContext().getPackageName());
+
+            img.setImageResource(drawableId);
 
         }
     }

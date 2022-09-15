@@ -10,17 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bunnygene.R;
-import com.example.bunnygene.contract.Recommendation;
+import com.example.bunnygene.contract.RecommendationDTO;
 
 import java.util.ArrayList;
 
 public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.RecViewHolder>{
 
-    public ArrayList<Recommendation> recommendations;
+    public ArrayList<RecommendationDTO> recommendations;
 
 
 
-    public ReportAdapter(ArrayList<Recommendation> recommendations)
+    public ReportAdapter(ArrayList<RecommendationDTO> recommendations)
     {
         this.recommendations = recommendations;
     }
@@ -41,7 +41,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.RecViewHol
 
     @Override
     public void onBindViewHolder(@NonNull RecViewHolder holder, int position) {
-        Recommendation rec = recommendations.get(position);
+        RecommendationDTO rec = recommendations.get(position);
         holder.bind(rec);
 
     }
@@ -56,7 +56,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.RecViewHol
             txtDescription = itemView.findViewById(R.id.rec_description);
         }
 
-        public void bind(Recommendation recommendation){
+        public void bind(RecommendationDTO recommendation){
             txtName.setText(recommendation.title);
             txtDescription.setText(recommendation.description);
         }

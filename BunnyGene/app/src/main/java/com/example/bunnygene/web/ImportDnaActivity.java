@@ -1,20 +1,17 @@
 package com.example.bunnygene.web;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
 import com.example.bunnygene.R;
-import com.example.bunnygene.ReportingActivity;
-import com.example.bunnygene.contract.Recommendation;
+import com.example.bunnygene.contract.GeneDTO;
+import com.example.bunnygene.services.data.DBHelper;
+import com.example.bunnygene.services.data.GenomeDAO;
 import com.example.bunnygene.services.helpers.CSVReader;
-import com.example.bunnygene.web.report.ReportAdapter;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,14 +21,17 @@ import java.util.List;
 public class ImportDnaActivity extends AppCompatActivity {
 
     private Button buttonImport;
+    private SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_import_dna);
 
-        buttonImport = findViewById(R.id.buttonImport);
+        DBHelper dbHelper = new DBHelper(this);
+        db = dbHelper.getReadableDatabase();
 
+        buttonImport = findViewById(R.id.buttonImport);
         buttonImport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,6 +56,9 @@ public class ImportDnaActivity extends AppCompatActivity {
             String magnitude = rows.get(i)[2];
             String repute = rows.get(i)[3];
             String summary = rows.get(i)[5];
+
+            GeneDTO gene = new GeneDTO(code, magnitude, repute, summary);
+            GenomeDAO.insertGeneData(db, gene);
         }
     }
 }

@@ -2,7 +2,7 @@ package com.example.bunnygene.contract;
 
 import java.sql.Date;
 
-public class Patient {
+public class PatientDTO {
     private String id;
     private String firstName;
     private String lastName;
@@ -10,7 +10,7 @@ public class Patient {
     private String sex;
     private String dateOfBirth;
 
-    public Patient(/*String id,*/ String firstName, String lastName, String middleName, String sex, String dateOfBirth) {
+    public PatientDTO(/*String id,*/ String firstName, String lastName, String middleName, String sex, String dateOfBirth) {
 //        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

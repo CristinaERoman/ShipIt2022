@@ -5,10 +5,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 
-import com.example.bunnygene.contract.Patient;
+import com.example.bunnygene.contract.PatientDTO;
 
-public class PatientQuery {
-    public static final String TABLE_NAME = "Patient";
+public class PatientDAO {
+    public static final String TABLE_NAME = "PatientDTO";
     public static final String _ID = BaseColumns._ID;
     public static final String COLUMN_FIRST_NAME = "FirstName";
     public static final String COLUMN_LAST_NAME = "LastName";
@@ -26,7 +26,7 @@ public class PatientQuery {
                     COLUMN_DATE_OF_BIRTH + " TEXT" +
                     ")";
 
-    public static void insertPatient(SQLiteDatabase db, Patient patient) {
+    public static void insertPatient(SQLiteDatabase db, PatientDTO patient) {
         // Insert into table - Option 2
         ContentValues values = new ContentValues();
         values.put(COLUMN_FIRST_NAME, patient.getFirstName());

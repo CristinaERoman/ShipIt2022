@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
+    tools:context=".web.MainActivity">
 
     <Button
         android:id="@+id/button"
@@ -19,6 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+
         android:id="@+id/textView"
         android:layout_width="245dp"
         android:layout_height="127dp"
@@ -32,6 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <Button
+        android:onClick="notify"
         android:id="@+id/buttonNotifyUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

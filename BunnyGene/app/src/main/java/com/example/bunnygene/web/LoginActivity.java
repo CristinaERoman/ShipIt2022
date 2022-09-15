@@ -1,4 +1,4 @@
-package com.example.bunnygene.activities;
+package com.example.bunnygene.web;
 
 import androidx.appcompat.app.AppCompatActivity;
 

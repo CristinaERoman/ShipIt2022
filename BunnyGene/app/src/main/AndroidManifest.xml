@@ -16,10 +16,10 @@
         android:theme="@style/Theme.BunnyGene"
         tools:targetApi="31">
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".web.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".web.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

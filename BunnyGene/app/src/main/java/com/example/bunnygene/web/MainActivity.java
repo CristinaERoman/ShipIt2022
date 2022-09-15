@@ -1,9 +1,7 @@
-package com.example.bunnygene.activities;
+package com.example.bunnygene.web;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,14 +11,19 @@ import android.widget.TextView;
 
 import com.example.bunnygene.R;
 import com.example.bunnygene.contract.Patient;
-import com.example.bunnygene.data.DBHelper;
-import com.example.bunnygene.data.PatientQuery;
+import com.example.bunnygene.services.helpers.AsyncInput;
+import com.example.bunnygene.services.helpers.AsyncJob;
+import com.example.bunnygene.services.data.DBHelper;
+import com.example.bunnygene.services.helpers.Notif;
+import com.example.bunnygene.services.data.PatientQuery;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button buttonGetFirstName;
     private Button buttonNotifyUser;
     private TextView textView;
+
+    int counter =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +47,24 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        buttonNotifyUser = findViewById(R.id.buttonNotifyUser);
-        buttonNotifyUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
+
+    }
+
+    public void notify(View view) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            AsyncInput input = new AsyncInput();
+            input.frequency = 10000;
+            input.methodParam = () -> {
+                counter++;
+                Notif.showNotif(this,"Notification " +counter,
+                        "This is a healthy notification!","Notification " +counter  );
+                return null;
+            };
+
+            AsyncJob asyncJob = new AsyncJob();
+            asyncJob.execute(input);
+
+        }
     }
 }

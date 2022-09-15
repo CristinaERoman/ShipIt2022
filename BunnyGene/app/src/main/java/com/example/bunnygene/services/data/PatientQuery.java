@@ -1,4 +1,4 @@
-package com.example.bunnygene.data;
+package com.example.bunnygene.services.data;
 
 import android.content.ContentValues;
 import android.database.Cursor;

@@ -16,12 +16,21 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="416dp"
+            android:layout_height="34dp"
             android:layout_marginTop="128dp"
-            android:gravity="center"
-            android:text="Welcome to Genome Recom"
-            android:textSize="18sp" />
+            android:layout_marginStart="20dp"
+            android:text="Welcome to Genome Recom!"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/buttonImport"
+            android:layout_width="176dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-400dp"
+            android:layout_marginTop="200dp"
+            android:text="Import DNA Data" />
     </LinearLayout>
 
     <!-- this the navigation view which draws and shows the navigation drawer -->

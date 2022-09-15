@@ -57,7 +57,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.RecViewHol
         }
 
         public void bind(RecommendationDTO recommendation){
-            txtName.setText(recommendation.title);
+            txtName.setText(recommendation.recommendation);
             txtDescription.setText(recommendation.description);
         }
     }

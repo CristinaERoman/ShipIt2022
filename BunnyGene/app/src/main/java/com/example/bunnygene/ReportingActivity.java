@@ -22,10 +22,10 @@ public class ReportingActivity extends AppCompatActivity {
 
         ArrayList<RecommendationDTO> recommendations = new ArrayList<RecommendationDTO>();
         RecommendationDTO rec1 = new RecommendationDTO();
-        rec1.title = "Eat"; rec1.description = "Time to eat Something";
+        rec1.recommendation = "Eat"; rec1.description = "Time to eat Something";
         recommendations.add(rec1);
         RecommendationDTO rec2 = new RecommendationDTO();
-        rec2.title = "Drink"; rec2.description = "Time to drink Something";
+        rec2.recommendation = "Drink"; rec2.description = "Time to drink Something";
         recommendations.add(rec2);
 
         ReportAdapter reportAdapter = new ReportAdapter(recommendations);

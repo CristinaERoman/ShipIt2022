@@ -18,6 +18,7 @@ import com.example.bunnygene.services.data.DBHelper;
 import com.example.bunnygene.services.data.PatientDAO;
 import com.example.bunnygene.services.helpers.CSVReader;
 import com.example.bunnygene.services.helpers.ImportHelper;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.InputStream;
 
@@ -44,14 +45,6 @@ public class Settings extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeButtonEnabled(true);
         }
-        Button reImport = (Button) findViewById(R.id.reImport);
-
-        reImport.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
-                InputStream is = getResources().openRawResource(R.raw.report);
-                ImportHelper.importDnaData(is, csvReader, db);
-            }
-        });
 
         Button save = (Button) findViewById(R.id.saveButton);
 
@@ -94,6 +87,8 @@ public class Settings extends AppCompatActivity {
                         ,notificationFrequency);
 
                 PatientDAO.insertPatient(db,patient);
+
+                Snackbar.make(view,"Save successful", 3000).show();
             }
         });
     }

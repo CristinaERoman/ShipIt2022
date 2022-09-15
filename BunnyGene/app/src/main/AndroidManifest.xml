@@ -17,6 +17,9 @@
         android:theme="@style/Theme.BunnyGene"
         tools:targetApi="31">
         <activity
+            android:name=".ReportingActivity"
+            android:exported="false" />
+        <activity
             android:name=".web.SettingsActivity"
             android:exported="false"
             android:label="@string/title_activity_settings" />

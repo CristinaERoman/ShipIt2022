@@ -46,10 +46,10 @@ public class ReportingActivity extends AppCompatActivity {
 
         recommendations = RecommendationHelper.getRecommendationsForPersonalDisease(this, db);
 
-        for(int index=0; index<10;  index++) {
+        for(int index=9; index>=5;  index--) {
             RecommendationDTO recommandation = recommendations.get(index);
             recommandation.link = "https://www.snpedia.com/index.php/" + recommandation.getGene();
-            recommandation.icon = "@drowable/" + recommandation.icon;
+            recommandation.icon = recommandation.getIcon();
             recommendationsProcessed.add(recommandation);
         }
 

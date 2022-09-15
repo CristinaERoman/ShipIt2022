@@ -1,14 +1,181 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/settings"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/settings"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <Button
+            android:id="@+id/reImport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Re-import DNA data"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.456"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextDate"
+            app:layout_constraintVertical_bias="0.408" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/privacySwitch"
+            android:layout_width="178dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="116dp"
+            android:layout_marginTop="16dp"
+            android:text="I don't want to know"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+            <RadioButton
+                android:id="@+id/dailyButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Daily" />
+
+            <RadioButton
+                android:id="@+id/weeklyButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Weekly" />
+
+            <RadioButton
+                android:id="@+id/monthlyButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Monthly" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="116dp"
+            android:layout_marginTop="27dp"
+            android:contentDescription="How often do you want to receive notifications from this app"
+            android:text="Select notification frequency"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/privacySwitch" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="32dp"
+            android:text="Select privacy option"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:text="First Name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:text="Last Name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+
+        <EditText
+            android:id="@+id/editTextDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:contentDescription="Date of birth"
+            android:ems="10"
+            android:inputType="date"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/femaleButton" />
+
+        <RadioButton
+            android:id="@+id/maleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Male"
+            app:layout_constraintBottom_toTopOf="@+id/editTextDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <RadioButton
+            android:id="@+id/femaleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Female"
+            app:layout_constraintBottom_toTopOf="@+id/editTextDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Select sex"
+            app:layout_constraintBottom_toTopOf="@+id/editTextDate"
+            app:layout_constraintEnd_toStartOf="@+id/maleButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3"
+            app:layout_constraintVertical_bias="0.452" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 </LinearLayout>

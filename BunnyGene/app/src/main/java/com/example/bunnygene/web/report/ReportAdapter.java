@@ -1,9 +1,14 @@
 package com.example.bunnygene.web.report;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.drawable.VectorDrawable;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +17,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bunnygene.R;
 import com.example.bunnygene.contract.Recommendation;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.RecViewHolder>{
@@ -50,15 +64,31 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.RecViewHol
 
         TextView txtName;
         TextView txtDescription;
+        ImageView img;
+        TextView txtFequency;
+        TextView txtLink;
+
         public RecViewHolder(View itemView) {
             super(itemView);
             txtName = itemView.findViewById(R.id.rec_name);
             txtDescription = itemView.findViewById(R.id.rec_description);
+            img = itemView.findViewById(R.id.rec_img);
+            txtFequency  = itemView.findViewById(R.id.rec_freq);
+            txtLink = itemView.findViewById(R.id.rec_link);
         }
 
         public void bind(Recommendation recommendation){
             txtName.setText(recommendation.title);
             txtDescription.setText(recommendation.description);
+            txtFequency.setText(recommendation.frequency);
+
+            txtLink.setClickable(true);
+            txtLink.setMovementMethod(LinkMovementMethod.getInstance());
+            String text = "<a href='";
+            text+=recommendation.link;
+            text+="'> More details on this Recommendation </a>";
+            txtLink.setText(Html.fromHtml(text));
+
         }
     }
 }

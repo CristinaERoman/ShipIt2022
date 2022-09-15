@@ -1,10 +1,13 @@
 package com.example.bunnygene.services.data;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 
 import com.example.bunnygene.contract.GeneDTO;
+
+import java.util.ArrayList;
 
 public class GenomeDAO {
     public static final String TABLE_NAME = "Genome";
@@ -31,5 +34,19 @@ public class GenomeDAO {
         values.put(COLUMN_REPUTE, gene.getRepute());
         values.put(COLUMN_SUMMARY, gene.getSummary());
         db.insert(TABLE_NAME, null, values);
+    }
+
+    public static ArrayList<String> getDiseases(SQLiteDatabase db) {
+        Cursor cursor = db.rawQuery("SELECT Code FROM Genome", null);
+        ArrayList<String> genesList = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                int geneCodeIndex = cursor.getColumnIndex("Code");
+                genesList.add(cursor.getString(geneCodeIndex));
+            } while (cursor.moveToNext());
+        }
+
+        return genesList;
     }
 }

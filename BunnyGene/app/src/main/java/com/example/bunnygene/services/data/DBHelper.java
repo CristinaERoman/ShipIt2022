@@ -17,8 +17,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // Create tables that will come with the app
-        db.execSQL(GenomeDAO.CREATE_GENOME_TABLE);
+
     }
 
     @Override

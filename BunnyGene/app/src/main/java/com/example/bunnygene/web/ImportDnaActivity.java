@@ -50,9 +50,9 @@ public class ImportDnaActivity extends AppCompatActivity {
         });
 
 
-        Intent i = new Intent(getApplicationContext(), ReportingActivity.class);
-        startActivity(i);
-        //setContentView(R.layout.activity_reporting);
+//        Intent i = new Intent(getApplicationContext(), ReportingActivity.class);
+//        startActivity(i);
+//        //setContentView(R.layout.activity_reporting);
 
 
     }

@@ -94,7 +94,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.RecViewHol
 
 
 
-            int drawableId = itemView.getResources().getIdentifier(recommendation.image, "drawable",
+            int drawableId = itemView.getResources().getIdentifier(recommendation.icon, "drawable",
                     itemView.getContext().getPackageName());
 
             img.setImageResource(drawableId);

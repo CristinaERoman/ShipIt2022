@@ -40,6 +40,7 @@ public class PatientDAO {
         values.put(COLUMN_DATE_OF_BIRTH, patient.getDateOfBirth());
         values.put(COLUMN_PRIVACY, patient.getPrivacy());
         values.put(COLUMN_FREQUENCY, patient.getNotificationFrequency());
+        db.execSQL("DELETE FROM " + TABLE_NAME);
         db.insert(TABLE_NAME, null, values);
     }
 

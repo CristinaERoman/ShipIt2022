@@ -42,11 +42,15 @@ public class GenomeDAO {
 
         if (cursor.moveToFirst()) {
             do {
-                int geneCodeIndex = cursor.getColumnIndex("Code");
+                int geneCodeIndex = cursor.getColumnIndex(COLUMN_CODE);
                 genesList.add(cursor.getString(geneCodeIndex));
             } while (cursor.moveToNext());
         }
 
         return genesList;
+    }
+
+    public static void clearGenomeTable(SQLiteDatabase db) {
+        db.execSQL("DELETE FROM " + TABLE_NAME);
     }
 }

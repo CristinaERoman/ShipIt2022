@@ -27,28 +27,24 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        // Create a database
-        DBHelper dbHelper = new DBHelper(this);
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-
-        Patient patient = new Patient("John", "Davis", "Paul", "M", "07/21/1983");
-        PatientQuery.insertPatient(db, patient);
-
-        textView = findViewById(R.id.textView);
-        buttonGetFirstName = findViewById(R.id.button);
-        buttonGetFirstName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                textView.setText(PatientQuery.getPatientFirstName(db));
-            }
-        });
-
-
-
-
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_main);
+//
+//        // Create a database
+//        DBHelper dbHelper = new DBHelper(this);
+//        SQLiteDatabase db = dbHelper.getReadableDatabase();
+//
+//        Patient patient = new Patient("John", "Davis", "Paul", "M", "07/21/1983");
+//        PatientQuery.insertPatient(db, patient);
+//
+//        textView = findViewById(R.id.textView);
+//        buttonGetFirstName = findViewById(R.id.button);
+//        buttonGetFirstName.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                textView.setText(PatientQuery.getPatientFirstName(db));
+//            }
+//        });
     }
 
     public void notify(View view) {

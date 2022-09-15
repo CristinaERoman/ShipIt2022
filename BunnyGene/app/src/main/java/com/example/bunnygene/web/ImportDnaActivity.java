@@ -10,7 +10,7 @@ import android.widget.EditText;
 
 import com.example.bunnygene.R;
 
-public class LoginActivity extends AppCompatActivity {
+public class ImportDnaActivity extends AppCompatActivity {
     private EditText mail;
     private EditText password;
     private Button loginButton;
@@ -18,16 +18,14 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_import_dna);
 
-        mail = findViewById(R.id.editTextEmail);
-        password = findViewById(R.id.editTextPassword);
-        loginButton = findViewById(R.id.buttonLogin);
+        loginButton = findViewById(R.id.buttonImport);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+//                startActivity(new Intent(ImportDnaActivity.this, MainActivity.class));
             }
         });
     }

@@ -1,10 +1,11 @@
 package com.example.bunnygene.web;
 
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
@@ -57,16 +58,39 @@ public class Settings extends AppCompatActivity {
             public void onClick(View view) {
                 TextView firstName = (TextView) findViewById(R.id.firstName);
                 TextView lastName = (TextView) findViewById(R.id.lastName);
+                //TextView birthdate = (Date)
                 SwitchCompat privacy = (SwitchCompat) findViewById(R.id.privacySwitch);
+                String notificationFrequency = new String();
+
+                RadioGroup frequency = (RadioGroup) findViewById(R.id.frequencyRadioGroup);
+                RadioGroup sexRadioGroup = (RadioGroup) findViewById(R.id.sexRadioGroup);
+
+                String sex = new String();
+
+                if(sexRadioGroup.getCheckedRadioButtonId() == R.id.femaleButton)
+                {
+                    sex = "female";
+                }else {
+                    sex = "male";
+                }
+
+                if(frequency.getCheckedRadioButtonId() == R.id.dailyButton) {
+                    notificationFrequency = "daily";
+                } else if (frequency.getCheckedRadioButtonId() == R.id.weeklyButton) {
+                    notificationFrequency = "weekly";
+                } else {
+                    notificationFrequency = "monthly";
+                }
+
 
                 PatientDTO patient = new PatientDTO(
                         firstName.getText().toString()
                         , lastName.getText().toString()
                         , ""
-                        , "M"
+                        , sex
                         , "23.01.1999"
                         , privacy.isChecked()
-                        ,"monthly");
+                        ,notificationFrequency);
 
                 PatientDAO.insertPatient(db,patient);
             }

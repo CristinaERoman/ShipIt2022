@@ -37,13 +37,13 @@ public class ReportingActivity extends AppCompatActivity {
         rec1.recommendation = "Eat"; rec1.description = "Time to eat Something";
         rec1.icon = "@drawable/avoid_air_pollution";
         rec1.frequency = "2 times per year";
-        rec1.link = "https://wwww.goolge.com";
+        rec1.link = "https://www.snpedia.com/index.php/";
         recommendations.add(rec1);
 
         RecommendationDTO rec2 = new RecommendationDTO();
         rec2.recommendation = "Drink"; rec2.description = "Time to drink Something";
         rec2.frequency = "2 times per year";
-        rec2.link = "https://wwww.goolge.com";
+        rec2.link = "https://www.snpedia.com/index.php/";
         rec2.icon = "@drawable/avoid_cold_air";
 
         recommendations.add(rec2);

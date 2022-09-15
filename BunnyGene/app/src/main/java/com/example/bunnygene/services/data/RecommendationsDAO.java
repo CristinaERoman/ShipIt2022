@@ -21,10 +21,17 @@ public class RecommendationsDAO {
     public static final String COLUMN_RECOMCATEGORY = "recomcategory";
 
     public static ArrayList<RecommendationDTO> getRecommendations(SQLiteDatabase db, String diseaseCode) {
+        Cursor cursor;
         int startGenotype = diseaseCode.indexOf('(');
-        String geneCode = diseaseCode.substring(0, startGenotype);
-        String genotypeCode = diseaseCode.substring(startGenotype + 1, diseaseCode.length());
-        Cursor cursor = db.rawQuery("SELECT * FROM DiseaseRecom WHERE gene='" + geneCode + "' AND genotype='" + genotypeCode + "'", null);
+
+        if (startGenotype >= 0) {
+            String geneCode = diseaseCode.substring(0, startGenotype);
+            String genotypeCode = diseaseCode.substring(startGenotype, diseaseCode.length());
+            cursor = db.rawQuery("SELECT * FROM DiseaseRecom WHERE gene='" + geneCode + "' AND genotype='" + genotypeCode + "'", null);
+        } else {
+            cursor = db.rawQuery("SELECT * FROM DiseaseRecom WHERE gene='" + diseaseCode + "'", null);
+        }
+
         RecommendationDTO recommendation = new RecommendationDTO();
         ArrayList<RecommendationDTO> recommendations = new ArrayList<>();
 

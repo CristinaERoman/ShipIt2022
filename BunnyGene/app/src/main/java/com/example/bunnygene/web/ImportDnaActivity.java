@@ -12,6 +12,7 @@ import com.example.bunnygene.contract.GeneDTO;
 import com.example.bunnygene.services.data.DBHelper;
 import com.example.bunnygene.services.data.GenomeDAO;
 import com.example.bunnygene.services.helpers.CSVReader;
+import com.example.bunnygene.services.helpers.ImportHelper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,44 +22,28 @@ import java.util.List;
 public class ImportDnaActivity extends AppCompatActivity {
 
     private Button buttonImport;
+
+    private DBHelper dbHelper;
     private SQLiteDatabase db;
+    private CSVReader csvReader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_import_dna);
 
-        DBHelper dbHelper = new DBHelper(this);
+        dbHelper = new DBHelper(this);
         db = dbHelper.getReadableDatabase();
+        csvReader = new CSVReader(this);
 
         buttonImport = findViewById(R.id.buttonImport);
         buttonImport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                startActivity(new Intent(ImportDnaActivity.this, MainActivity.class));
-                importDnaData();
+                InputStream is = getResources().openRawResource(R.raw.report);
+                ImportHelper.importDnaData(is, csvReader, db);
             }
         });
-    }
-
-    private void importDnaData() {
-        InputStream is = getResources().openRawResource(R.raw.report);
-        List<String[]> rows = new ArrayList<>();
-        CSVReader csvReader = new CSVReader(this);
-        try {
-            rows = csvReader.readCSV(is);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        for (int i = 0; i < rows.size(); i++) {
-            String code = rows.get(i)[1];
-            String magnitude = rows.get(i)[2];
-            String repute = rows.get(i)[3];
-            String summary = rows.get(i)[5];
-
-            GeneDTO gene = new GeneDTO(code, magnitude, repute, summary);
-            GenomeDAO.insertGeneData(db, gene);
-        }
     }
 }

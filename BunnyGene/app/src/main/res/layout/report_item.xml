@@ -44,12 +44,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.084" />
 
+
             <TextView
                 android:id="@+id/rec_freq"
                 android:layout_width="176dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginLeft="9dp"
+                android:layout_marginBottom="9dp"
                 android:textColor="#f58742"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"

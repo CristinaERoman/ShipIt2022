@@ -5,13 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.bunnygene.contract.RecommendationDTO;
+import com.example.bunnygene.services.data.DBHelper;
+import com.example.bunnygene.services.data.GenomeDAO;
 import com.example.bunnygene.services.helpers.AsyncInput;
+import com.example.bunnygene.services.helpers.ImportHelper;
+import com.example.bunnygene.services.helpers.RecommendationHelper;
 import com.example.bunnygene.web.report.ReportAdapter;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class ReportingActivity extends AppCompatActivity {
@@ -32,29 +38,30 @@ public class ReportingActivity extends AppCompatActivity {
         RecyclerView repRecycler = findViewById(R.id.rep_recycler);
 
         ArrayList<RecommendationDTO> recommendations = new ArrayList<RecommendationDTO>();
-        RecommendationDTO rec1 = new RecommendationDTO();
+        ArrayList<RecommendationDTO> recommendationsProcessed = new ArrayList<RecommendationDTO>();
 
-        rec1.recommendation = "Eat"; rec1.description = "Time to eat Something";
-        rec1.icon = "@drawable/avoid_air_pollution";
-        rec1.frequency = "2 times per year";
-        rec1.link = "https://wwww.goolge.com";
-        recommendations.add(rec1);
+        DBHelper dbHelper = new DBHelper(this);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-        RecommendationDTO rec2 = new RecommendationDTO();
-        rec2.recommendation = "Drink"; rec2.description = "Time to drink Something";
-        rec2.frequency = "2 times per year";
-        rec2.link = "https://wwww.goolge.com";
-        rec2.icon = "@drawable/avoid_cold_air";
 
-        recommendations.add(rec2);
+        recommendations = RecommendationHelper.getRecommendationsForPersonalDisease(this, db);
 
-        ReportAdapter reportAdapter = new ReportAdapter(recommendations);
+        for(int index=0; index<10;  index++) {
+            RecommendationDTO recommandation = recommendations.get(index);
+            recommandation.link = "https://www.snpedia.com/index.php/" + recommandation.getGene();
+            recommandation.icon = "@drowable/" + recommandation.icon;
+            recommendationsProcessed.add(recommandation);
+        }
+
+        ReportAdapter reportAdapter = new ReportAdapter(recommendationsProcessed);
 
         repRecycler.setAdapter(reportAdapter);
 
         LinearLayoutManager reportLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,
                 false);
         repRecycler.setLayoutManager(reportLayoutManager);
+
+
 
         AsyncInput inputParam = new AsyncInput();
         inputParam.frequency = 15000;

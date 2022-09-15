@@ -8,6 +8,7 @@ public class RecommendationDTO {
     public String frequency;
     public String link;
     public String disease;
+    public String gene;
 
     public RecommendationDTO() {};
 
@@ -62,4 +63,12 @@ public class RecommendationDTO {
     public String getDisease() { return disease; }
 
     public void setDisease(String disease) { this.disease = disease; }
+
+    public String getGene() {
+        return gene;
+    }
+
+    public void setGene(String gene) {
+        this.gene = gene;
+    }
 }

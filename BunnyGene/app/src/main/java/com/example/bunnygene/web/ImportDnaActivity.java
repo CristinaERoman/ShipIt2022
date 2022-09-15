@@ -48,7 +48,7 @@ public class ImportDnaActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                startActivity(new Intent(ImportDnaActivity.this, MainActivity.class));
                 InputStream is = getResources().openRawResource(R.raw.report);
-//                db.execSQL(GenomeDAO.CREATE_GENOME_TABLE);
+                db.execSQL(GenomeDAO.CREATE_GENOME_TABLE);
                 GenomeDAO.clearGenomeTable(db);
                 ImportHelper.importDnaData(is, csvReader, db);
                 RecommendationHelper.getRecommendationsForPersonalDisease(context, db);

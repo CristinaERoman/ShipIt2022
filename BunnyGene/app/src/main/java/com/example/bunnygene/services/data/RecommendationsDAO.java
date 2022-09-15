@@ -42,12 +42,14 @@ public class RecommendationsDAO {
                 int descriptionIndex = cursor.getColumnIndex(COLUMN_DESCRIPTION);
                 int iconIndex = cursor.getColumnIndex(COLUMN_ICON);
                 int diseaseIndex = cursor.getColumnIndex(COLUMN_DISEASE);
+                int geneIndex = cursor.getColumnIndex(COLUMN_GENE);
 
                 recommendation.setRecommendation(cursor.getString(recomIndex));
                 recommendation.setDescription(cursor.getString(descriptionIndex));
                 recommendation.setFrequency(cursor.getString(frequencyIndex));
                 recommendation.setIcon(cursor.getString(iconIndex));
                 recommendation.setDisease(cursor.getString(diseaseIndex));
+                recommendation.setGene(cursor.getString(geneIndex));
 
                 recommendations.add(recommendation);
             } while (cursor.moveToNext());

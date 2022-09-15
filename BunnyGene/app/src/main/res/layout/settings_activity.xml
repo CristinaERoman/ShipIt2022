@@ -14,16 +14,15 @@
             android:id="@+id/reImport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="Re-import DNA data"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.456"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextDate"
-            app:layout_constraintVertical_bias="0.408" />
+            app:layout_constraintTop_toBottomOf="@id/saveButton"
+            app:layout_constraintVertical_bias="0.125" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/privacySwitch"
@@ -79,13 +78,13 @@
             android:layout_width="wrap_content"
             android:layout_height="19dp"
             android:layout_marginStart="140dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="8dp"
             android:text="Select privacy option"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/firstName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -99,7 +98,7 @@
             app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName3"
+            android:id="@+id/lastName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -110,7 +109,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+            app:layout_constraintTop_toBottomOf="@+id/firstName" />
 
         <EditText
             android:id="@+id/editTextDate"
@@ -124,7 +123,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/femaleButton" />
+            app:layout_constraintTop_toBottomOf="@+id/femaleButton"
+            tools:ignore="EditableContentDescCheck" />
 
         <RadioButton
             android:id="@+id/maleButton"
@@ -136,7 +136,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/textView5"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3"
+            app:layout_constraintTop_toBottomOf="@+id/lastName"
             app:layout_constraintVertical_bias="0.0" />
 
         <RadioButton
@@ -149,7 +149,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+            app:layout_constraintTop_toBottomOf="@+id/lastName" />
 
         <TextView
             android:id="@+id/textView5"
@@ -161,7 +161,7 @@
             app:layout_constraintEnd_toStartOf="@+id/maleButton"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3"
+            app:layout_constraintTop_toBottomOf="@+id/lastName"
             app:layout_constraintVertical_bias="0.452" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -170,6 +170,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_begin="20dp" />
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

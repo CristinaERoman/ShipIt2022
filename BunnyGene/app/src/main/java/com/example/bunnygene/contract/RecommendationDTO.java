@@ -2,22 +2,14 @@ package com.example.bunnygene.contract;
 
 public class RecommendationDTO {
     public String id;
-    public String title;
+    public String recommendation;
     public String description;
-    public String image;
+    public String icon;
     public String frequency;
     public String link;
+    public String disease;
 
     public RecommendationDTO() {};
-
-    public RecommendationDTO(String id, String title, String description, String image, String frequency, String link) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.image = image;
-        this.frequency = frequency;
-        this.link = link;
-    }
 
     public String getId() {
         return id;
@@ -27,12 +19,12 @@ public class RecommendationDTO {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getRecommendation() {
+        return recommendation;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setRecommendation(String recommendation) {
+        this.recommendation = recommendation;
     }
 
     public String getDescription() {
@@ -43,12 +35,12 @@ public class RecommendationDTO {
         this.description = description;
     }
 
-    public String getImage() {
-        return image;
+    public String getIcon() {
+        return icon;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public String getFrequency() {
@@ -66,4 +58,8 @@ public class RecommendationDTO {
     public void setLink(String link) {
         this.link = link;
     }
+
+    public String getDisease() { return disease; }
+
+    public void setDisease(String disease) { this.disease = disease; }
 }

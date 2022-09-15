@@ -27,7 +27,6 @@ public class GenomeDAO {
                     ")";
 
     public static void insertGeneData(SQLiteDatabase db, GeneDTO gene) {
-        // Insert into table - Option 2
         ContentValues values = new ContentValues();
         values.put(COLUMN_CODE, gene.getCode());
         values.put(COLUMN_MAGNITUDE, gene.getMagnitude());

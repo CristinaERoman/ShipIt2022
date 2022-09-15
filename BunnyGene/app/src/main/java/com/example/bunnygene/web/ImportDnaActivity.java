@@ -54,10 +54,9 @@ public class ImportDnaActivity extends AppCompatActivity {
         buttonImport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                startActivity(new Intent(ImportDnaActivity.this, MainActivity.class));
                 InputStream is = getResources().openRawResource(R.raw.report);
+                db.execSQL("DROP TABLE IF EXISTS Genome");
                 db.execSQL(GenomeDAO.CREATE_GENOME_TABLE);
-                GenomeDAO.clearGenomeTable(db);
                 ImportHelper.importDnaData(is, csvReader, db);
                 Snackbar.make(view,"DNA data was successfully imported!", 5000).show();
                 RecommendationHelper.getRecommendationsForPersonalDisease(context, db);

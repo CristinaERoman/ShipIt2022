@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.bunnygene.contract.RecommendationDTO;
 import com.example.bunnygene.services.data.DBHelper;
@@ -16,13 +17,12 @@ import com.example.bunnygene.services.helpers.AsyncInput;
 import com.example.bunnygene.services.helpers.ImportHelper;
 import com.example.bunnygene.services.helpers.RecommendationHelper;
 import com.example.bunnygene.web.report.ReportAdapter;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 
 public class ReportingActivity extends AppCompatActivity {
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,27 +46,30 @@ public class ReportingActivity extends AppCompatActivity {
 
         recommendations = RecommendationHelper.getRecommendationsForPersonalDisease(this, db);
 
-        for(int index=9; index>=5;  index--) {
-            RecommendationDTO recommandation = recommendations.get(index);
-            recommandation.link = "https://www.snpedia.com/index.php/" + recommandation.getGene();
-            recommandation.icon = recommandation.getIcon();
-            recommendationsProcessed.add(recommandation);
+        if (recommendations.size() > 0) {
+            for(int index=9; index>=5;  index--) {
+                RecommendationDTO recommandation = recommendations.get(index);
+                recommandation.link = "https://www.snpedia.com/index.php/" + recommandation.getGene();
+                recommandation.icon = recommandation.getIcon();
+                recommendationsProcessed.add(recommandation);
+            }
+
+            ReportAdapter reportAdapter = new ReportAdapter(recommendationsProcessed);
+
+            repRecycler.setAdapter(reportAdapter);
+
+            LinearLayoutManager reportLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,
+                    false);
+            repRecycler.setLayoutManager(reportLayoutManager);
+
+
+
+            AsyncInput inputParam = new AsyncInput();
+            inputParam.frequency = 15000;
+            //inputParam.methodParam
+        } else {
+            Snackbar.make(findViewById(R.id.activity_reporting),"DNA data was not imported yet! No report was generated!", 5000).show();
         }
-
-        ReportAdapter reportAdapter = new ReportAdapter(recommendationsProcessed);
-
-        repRecycler.setAdapter(reportAdapter);
-
-        LinearLayoutManager reportLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,
-                false);
-        repRecycler.setLayoutManager(reportLayoutManager);
-
-
-
-        AsyncInput inputParam = new AsyncInput();
-        inputParam.frequency = 15000;
-        //inputParam.methodParam
-
     }
     @Override
     public boolean onSupportNavigateUp() {

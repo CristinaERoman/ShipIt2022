@@ -9,14 +9,18 @@ public class PatientDTO {
     private String middleName;
     private String sex;
     private String dateOfBirth;
+    private Boolean privacy;
+    private String notificationFrequency;
 
-    public PatientDTO(/*String id,*/ String firstName, String lastName, String middleName, String sex, String dateOfBirth) {
+    public PatientDTO(/*String id,*/ String firstName, String lastName, String middleName, String sex, String dateOfBirth, Boolean privacy, String notificationFrequency) {
 //        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
         this.sex = sex;
         this.dateOfBirth = dateOfBirth;
+        this.privacy = privacy;
+        this.notificationFrequency = notificationFrequency;
     }
 
     public String getId() {
@@ -66,4 +70,21 @@ public class PatientDTO {
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
+
+    public Boolean getPrivacy() {
+        return privacy;
+    }
+
+    public void setPrivacy(Boolean privacy) {
+        this.privacy = privacy;
+    }
+
+    public String getNotificationFrequency() {
+        return notificationFrequency;
+    }
+
+    public void setNotificationFrequency(String notificationFrequency) {
+        this.notificationFrequency = notificationFrequency;
+    }
+
 }

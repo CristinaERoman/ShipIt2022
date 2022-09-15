@@ -2,12 +2,14 @@ package com.example.bunnygene.web;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.bunnygene.R;
+import com.example.bunnygene.ReportingActivity;
 import com.example.bunnygene.contract.GeneDTO;
 import com.example.bunnygene.services.data.DBHelper;
 import com.example.bunnygene.services.data.GenomeDAO;
@@ -46,5 +48,12 @@ public class ImportDnaActivity extends AppCompatActivity {
                 ImportHelper.importDnaData(is, csvReader, db);
             }
         });
+
+
+        Intent i = new Intent(getApplicationContext(), ReportingActivity.class);
+        startActivity(i);
+        //setContentView(R.layout.activity_reporting);
+
+
     }
 }

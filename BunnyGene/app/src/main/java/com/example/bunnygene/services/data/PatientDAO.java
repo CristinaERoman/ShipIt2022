@@ -15,6 +15,8 @@ public class PatientDAO {
     public static final String COLUMN_MIDDLE_NAME = "MiddleName";
     public static final String COLUMN_SEX = "Sex";
     public static final String COLUMN_DATE_OF_BIRTH = "DateOfBirth";
+    public static final String COLUMN_PRIVACY = "Privacy";
+    public static final String COLUMN_FREQUENCY = "NotificationFrequency";
 
     public static final String CREATE_PATIENT_TABLE =
             "CREATE TABLE " + TABLE_NAME + "(" +
@@ -24,6 +26,8 @@ public class PatientDAO {
                     COLUMN_MIDDLE_NAME + " TEXT, " +
                     COLUMN_SEX + " TEXT, " +
                     COLUMN_DATE_OF_BIRTH + " TEXT" +
+                    COLUMN_PRIVACY + " Binary " +
+                    COLUMN_FREQUENCY + " TEXT " +
                     ")";
 
     public static void insertPatient(SQLiteDatabase db, PatientDTO patient) {
@@ -34,6 +38,8 @@ public class PatientDAO {
         values.put(COLUMN_MIDDLE_NAME, patient.getMiddleName());
         values.put(COLUMN_SEX, patient.getSex());
         values.put(COLUMN_DATE_OF_BIRTH, patient.getDateOfBirth());
+        values.put(COLUMN_PRIVACY, patient.getPrivacy());
+        values.put(COLUMN_FREQUENCY, patient.getNotificationFrequency());
         db.insert(TABLE_NAME, null, values);
     }
 

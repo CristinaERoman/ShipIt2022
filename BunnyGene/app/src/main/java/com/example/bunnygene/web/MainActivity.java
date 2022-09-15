@@ -3,8 +3,10 @@ package com.example.bunnygene.web;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -13,11 +15,13 @@ import android.widget.TextView;
 import android.view.MenuItem;
 
 import com.example.bunnygene.R;
+import com.example.bunnygene.ReportingActivity;
 import com.example.bunnygene.services.helpers.AsyncInput;
 import com.example.bunnygene.services.helpers.AsyncJob;
 import com.example.bunnygene.services.helpers.Notif;
+import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private Button buttonGetFirstName;
     private Button buttonNotifyUser;
@@ -45,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
 
         // to make the Navigation drawer icon always appear on the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     // override the onOptionsItemSelected()
@@ -67,9 +74,11 @@ public class MainActivity extends AppCompatActivity {
             AsyncInput input = new AsyncInput();
             input.frequency = 10000;
             input.methodParam = () -> {
-                counter++;
+                Notif.showNotif(this,"Genome " +counter,
+                        "This is a healthy notification!","Notification 1"   );
+
                 Notif.showNotif(this,"Notification " +counter,
-                        "This is a healthy notification!","Notification " +counter  );
+                        "This is a healthy notification!","Notification 2"   );
                 return null;
             };
 
@@ -77,5 +86,26 @@ public class MainActivity extends AppCompatActivity {
             asyncJob.execute(input);
 
         }
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.    int id = item.getItemId();
+        int id = item.getItemId();
+        Intent i = new Intent();
+        if (id == R.id.nav_reports) {
+             i = new Intent(getApplicationContext(), ReportingActivity.class);
+        } else if (id == R.id.nav_import) {
+             i = new Intent(getApplicationContext(), ImportDnaActivity.class);
+        } else if (id == R.id.nav_settings) {
+             i = new Intent(getApplicationContext(), Settings.class);
+        }
+
+        startActivity(i);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.my_drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

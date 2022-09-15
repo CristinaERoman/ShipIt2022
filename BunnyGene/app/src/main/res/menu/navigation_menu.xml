@@ -9,6 +9,7 @@ tools:ignore="HardcodedText">
 
 <item
     android:id="@+id/nav_reports"
+
     android:title="Reports" />
 
 <item

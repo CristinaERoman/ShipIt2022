@@ -8,7 +8,7 @@ import android.provider.BaseColumns;
 import com.example.bunnygene.contract.PatientDTO;
 
 public class PatientDAO {
-    public static final String TABLE_NAME = "PatientDTO";
+    public static final String TABLE_NAME = "Patient";
     public static final String _ID = BaseColumns._ID;
     public static final String COLUMN_FIRST_NAME = "FirstName";
     public static final String COLUMN_LAST_NAME = "LastName";
@@ -25,8 +25,8 @@ public class PatientDAO {
                     COLUMN_LAST_NAME + " TEXT, " +
                     COLUMN_MIDDLE_NAME + " TEXT, " +
                     COLUMN_SEX + " TEXT, " +
-                    COLUMN_DATE_OF_BIRTH + " TEXT" +
-                    COLUMN_PRIVACY + " Binary " +
+                    COLUMN_DATE_OF_BIRTH + " TEXT," +
+                    COLUMN_PRIVACY + " Binary, " +
                     COLUMN_FREQUENCY + " TEXT " +
                     ")";
 

@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -15,6 +14,8 @@ import com.example.bunnygene.web.report.ReportAdapter;
 import java.util.ArrayList;
 
 public class ReportingActivity extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,9 @@ public class ReportingActivity extends AppCompatActivity {
         //inputParam.methodParam
 
     }
+
+
+
 
     public void startReporting(MenuItem item) {
         //Intent i = new Intent(getApplicationContext(), ReportingActivity.class);

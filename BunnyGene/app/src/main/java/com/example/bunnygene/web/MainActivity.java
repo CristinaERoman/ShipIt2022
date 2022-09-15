@@ -27,10 +27,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Button buttonNotifyUser;
     private TextView textView;
 
-    int counter =0;
 
     public DrawerLayout drawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
+
+    boolean notifSent = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        if(!notifSent) {
+            notifSent = true;
+            sendNotifications();
+        }
     }
 
     // override the onOptionsItemSelected()
@@ -69,22 +74,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    public void notify(View view) {
+    public void sendNotifications() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             AsyncInput input = new AsyncInput();
-            input.frequency = 10000;
+            input.frequency = 5000;
+            input.times = 1;
             input.methodParam = () -> {
-                Notif.showNotif(this,"Genome " +counter,
-                        "This is a healthy notification!","Notification 1"   );
+                Notif.showNotif(this,"Exercise " ,
+                        "Be more physically active!","Notification 1"   );
 
-                Notif.showNotif(this,"Notification " +counter,
-                        "This is a healthy notification!","Notification 2"   );
+                Notif.showNotif(this,"Eat Healthy " ,
+                        "Eat your fruits and vegetables!","Notification 2"   );
                 return null;
             };
 
             AsyncJob asyncJob = new AsyncJob();
             asyncJob.execute(input);
-
         }
     }
 

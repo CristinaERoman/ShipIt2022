@@ -44,12 +44,17 @@ public class PatientDAO {
         db.insert(TABLE_NAME, null, values);
     }
 
-    public static String getPatientFirstName(SQLiteDatabase db) {
+    public static PatientDTO getPatient(SQLiteDatabase db) {
+
         Cursor c = db.rawQuery("SELECT * FROM Patient", null);
         int i = c.getCount();
         c.move(i);
-        int firstNameIndex = c.getColumnIndex("FirstName");
-        int lastNameIndex = c.getColumnIndex("LastName");
-        return c.getString(firstNameIndex) + " " + c.getString(lastNameIndex);
+        String firstName =  c.getString(1);
+        String lastName = c.getString(2);
+        String sex = c.getString(4);
+        String birthDate = c.getString(5);
+        Boolean privacy = c.getInt(6) != 0;
+        String notificationFrequency = c.getString(7);
+        return new PatientDTO(firstName, lastName, "",sex,birthDate,privacy,notificationFrequency);
     }
 }

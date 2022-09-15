@@ -42,6 +42,7 @@ public class Settings extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
         }
         Button reImport = (Button) findViewById(R.id.reImport);
 
@@ -95,7 +96,12 @@ public class Settings extends AppCompatActivity {
                 PatientDAO.insertPatient(db,patient);
             }
         });
+    }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 
 }

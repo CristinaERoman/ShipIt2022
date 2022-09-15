@@ -1,5 +1,6 @@
 package com.example.bunnygene;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +22,11 @@ public class ReportingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reporting);
 
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+        }
 
         RecyclerView repRecycler = findViewById(R.id.rep_recycler);
 
@@ -53,6 +59,11 @@ public class ReportingActivity extends AppCompatActivity {
         inputParam.frequency = 15000;
         //inputParam.methodParam
 
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 
     public void startReporting(MenuItem item) {

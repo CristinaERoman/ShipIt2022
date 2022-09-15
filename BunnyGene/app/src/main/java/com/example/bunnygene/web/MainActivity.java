@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void sendNotifications() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             AsyncInput input = new AsyncInput();
-            input.frequency = 5000;
+            input.frequency = 15000;
             input.times = 1;
             input.methodParam = () -> {
                 Notif.showNotif(this,"Exercise " ,

@@ -1,5 +1,6 @@
 package com.example.bunnygene.web;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -8,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.bunnygene.R;
 import com.example.bunnygene.ReportingActivity;
@@ -17,6 +19,7 @@ import com.example.bunnygene.services.data.GenomeDAO;
 import com.example.bunnygene.services.helpers.CSVReader;
 import com.example.bunnygene.services.helpers.ImportHelper;
 import com.example.bunnygene.services.helpers.RecommendationHelper;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,6 +40,11 @@ public class ImportDnaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_import_dna);
 
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+        }
         context = this;
         dbHelper = new DBHelper(this);
         db = dbHelper.getReadableDatabase();
@@ -51,6 +59,7 @@ public class ImportDnaActivity extends AppCompatActivity {
                 db.execSQL(GenomeDAO.CREATE_GENOME_TABLE);
                 GenomeDAO.clearGenomeTable(db);
                 ImportHelper.importDnaData(is, csvReader, db);
+                Snackbar.make(view,"DNA data was successfully imported!", 5000).show();
                 RecommendationHelper.getRecommendationsForPersonalDisease(context, db);
             }
         });
@@ -61,5 +70,11 @@ public class ImportDnaActivity extends AppCompatActivity {
 //        //setContentView(R.layout.activity_reporting);
 
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 }

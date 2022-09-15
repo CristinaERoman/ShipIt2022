@@ -1,5 +1,6 @@
 package com.example.bunnygene.web;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -37,6 +38,11 @@ public class ImportDnaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_import_dna);
 
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+        }
         context = this;
         dbHelper = new DBHelper(this);
         db = dbHelper.getReadableDatabase();
@@ -61,5 +67,11 @@ public class ImportDnaActivity extends AppCompatActivity {
 //        //setContentView(R.layout.activity_reporting);
 
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 }

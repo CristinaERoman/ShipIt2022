@@ -5,12 +5,14 @@
     android:id="@+id/activity_reporting"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReportingActivity">
+    tools:context=".ReportingActivity"
+    android:background="@drawable/dna"
+    >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rep_recycler"
-        android:layout_width="313dp"
-        android:layout_height="477dp"
+        android:layout_width="353dp"
+        android:layout_height="640dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

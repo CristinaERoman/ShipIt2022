@@ -54,6 +54,13 @@ public class ReportingActivity extends AppCompatActivity {
                 recommendationsProcessed.add(recommandation);
             }
 
+            for(int index=1; index>=1;  index--) {
+                RecommendationDTO recommandation = recommendations.get(index);
+                recommandation.link = "https://www.snpedia.com/index.php/" + recommandation.getGene();
+                recommandation.icon = recommandation.getIcon();
+                recommendationsProcessed.add(recommandation);
+            }
+
             ReportAdapter reportAdapter = new ReportAdapter(recommendationsProcessed);
 
             repRecycler.setAdapter(reportAdapter);
